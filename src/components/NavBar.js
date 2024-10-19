@@ -9,15 +9,21 @@ export default function NavBar() {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Link passHref href="/">
-          <Navbar.Brand>CHANGE ME</Navbar.Brand>
+          <Navbar.Brand>Fan Fusion</Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            {/* CLOSE NAVBAR ON LINK SELECTION: https://stackoverflow.com/questions/72813635/collapse-on-select-react-bootstrap-navbar-with-nextjs-not-working */}
-            <Link className="nav-link" href="/">
+            <Button className="btn btn-secondary" href="/">
               Home
-            </Link>
+            </Button>
+            <Button className="btn btn-secondary" href="/stories/add-story">
+              Create Story
+            </Button>
+            <Button className="btn btn-secondary" href="/Profile/{UserId}">
+              {/* ^^ Take {UserId} out of the quotes once the function for it is made ^^ */}
+              Profile
+            </Button>
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
