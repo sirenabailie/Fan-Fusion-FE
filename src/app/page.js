@@ -1,4 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
+'use client';
+
+import { useEffect } from 'react';
+import { useAuth } from '../utils/context/authContext';
+
 function Home() {
+  const { user } = useAuth();
+
+  useEffect(() => {
+    console.log(user);
+  }, []);
+
   return (
     <div
       className="text-center d-flex flex-column justify-content-center align-content-center"
