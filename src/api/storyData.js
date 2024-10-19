@@ -5,7 +5,7 @@ const endpoint = clientCredentials.databaseURL;
 // READ Story
 const getStories = () =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/Story.json`, {
+    fetch(`${endpoint}/stories`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -16,10 +16,24 @@ const getStories = () =>
       .catch(reject);
   });
 
+// GET SINGLE BOOK
+const getSingleStory = (storyId) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/stories/${storyId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
 // CREATE Story
 const createStory = (payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/Story.json`, {
+    fetch(`${endpoint}/stories`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,10 +46,10 @@ const createStory = (payload) =>
   });
 
 // UPDATE Story
-const updateStory = (payload) =>
+const updateStory = (storyId, payload) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/Story/${payload.firebaseKey}.json`, {
-      method: 'PATCH',
+    fetch(`${endpoint}/stories/${storyId}`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -46,4 +60,18 @@ const updateStory = (payload) =>
       .catch(reject);
   });
 
-export { getStories, createStory, updateStory };
+// DELETE Story
+const deleteStory = (storyId) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/stories/${storyId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
+export { getStories, getSingleStory, createStory, updateStory, deleteStory };

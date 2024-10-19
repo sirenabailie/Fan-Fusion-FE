@@ -15,7 +15,7 @@ const initialState = {
   image: '',
   dateCreated: false,
   targetAudience: '',
-  categoryfirebaseKey: '',
+  categoryId: '',
 };
 
 function StoryForm({ obj = initialState }) {
@@ -25,9 +25,9 @@ function StoryForm({ obj = initialState }) {
   const { user } = useAuth();
 
   useEffect(() => {
-    getStories(user.ufirebaseKey).then(setStories);
+    getStories(user.uId).then(setStories);
 
-    if (obj.firebaseKey) setFormInput(obj);
+    if (obj.Id) setFormInput(obj);
   }, [obj, user]);
 
   const handleChange = (e) => {
@@ -40,12 +40,12 @@ function StoryForm({ obj = initialState }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (obj.firebaseKey) {
-      updateStory(formInput).then(() => router.push(`/Story/${obj.firebaseKey}`));
+    if (obj.Id) {
+      updateStory(formInput).then(() => router.push(`/stories/${obj.Id}`));
     } else {
-      const payload = { ...formInput, ufirebaseKey: user.ufirebaseKey };
+      const payload = { ...formInput, uId: user.uId };
       createStory(payload).then(({ name }) => {
-        const patchPayload = { firebaseKey: name };
+        const patchPayload = { Id: name };
         updateStory(patchPayload).then(() => {
           router.push('/');
         });
@@ -55,29 +55,29 @@ function StoryForm({ obj = initialState }) {
 
   return (
     <Form onSubmit={handleSubmit} className="text-black">
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Story</h2>
+      <h2 className="text-white mt-5">{obj.Id ? 'Update' : 'Create'} Story</h2>
 
       {/* IMAGE INPUT  */}
-      <FloatingLabel controlfirebaseKey="floatingInput2" label="Cover Image" className="mb-3">
+      <FloatingLabel controlId="floatingInput2" label="Cover Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="image" value={formInput.image} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* TITLE INPUT  */}
-      <FloatingLabel controlfirebaseKey="floatingInput1" label="Story Title" className="mb-3">
+      <FloatingLabel controlId="floatingInput1" label="Story Title" className="mb-3">
         <Form.Control type="text" placeholder="Enter a title for your story" name="title" value={formInput.title} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* DESCRIPTION TEXTAREA  */}
-      <FloatingLabel controlfirebaseKey="floatingTextarea" label="Description" className="mb-3">
+      <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
         <Form.Control as="textarea" placeholder="Description" style={{ height: '100px' }} name="description" value={formInput.description} onChange={handleChange} required />
       </FloatingLabel>
 
       {/* TARGET AUDIENCE  */}
-      <FloatingLabel controlfirebaseKey="floatingSelect" label="Target Audience">
+      <FloatingLabel controlId="floatingSelect" label="Target Audience">
         <Form.Select aria-label="Target Audience" name="targetAudience" onChange={handleChange} className="mb-3" value={formInput.targetAudience || ''} required>
           <option value="">Select an Audience</option>
           {stories.map((story) => (
-            <option key={story.firebaseKey} value={story.firebaseKey}>
+            <option key={story.Id} value={story.Id}>
               {story.targetAudience}
             </option>
           ))}
@@ -85,7 +85,7 @@ function StoryForm({ obj = initialState }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Story</Button>
+      <Button type="submit">{obj.Id ? 'Update' : 'Create'} Story</Button>
     </Form>
   );
 }
@@ -96,7 +96,7 @@ StoryForm.propTypes = {
     image: PropTypes.string,
     title: PropTypes.string,
     targetAudience: PropTypes.string,
-    firebaseKey: PropTypes.number,
+    Id: PropTypes.number,
   }),
 };
 
