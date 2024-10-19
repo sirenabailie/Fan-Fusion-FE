@@ -5,6 +5,8 @@ import { useAuth } from '../utils/context/authContext';
 import { getStories } from '../api/storyData';
 import StoryCard from '../components/StoryCard';
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 function Home() {
   const [stories, setStories] = useState([]);
 
@@ -17,6 +19,7 @@ function Home() {
 
   useEffect(() => {
     getAllTheStories();
+    console.log(user);
   }, []);
 
   return (
