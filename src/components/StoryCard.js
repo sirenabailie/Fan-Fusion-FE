@@ -25,6 +25,7 @@ StoryCard.propTypes = {
     targetAudience: PropTypes.string,
     description: PropTypes.string,
     dateCreated: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
 };
 
