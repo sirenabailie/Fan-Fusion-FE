@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "targetAudience": "Young Adult"
+  },
+  {
+    "id": 2,
+    "targetAudience": "New Adult"
+  },
+  {
+    "id": 3,
+    "targetAudience":  "Adult"
+  }
+]
