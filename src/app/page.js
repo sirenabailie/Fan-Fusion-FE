@@ -11,7 +11,7 @@ function Home() {
   const { user } = useAuth();
 
   const getAllTheStories = () => {
-    getStories(user.userUid).then(setStories);
+    getStories(user.uid).then(setStories);
     // console.log(getStories);
   };
 
