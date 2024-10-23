@@ -8,12 +8,12 @@ import { getSingleStory } from '@/api/storyData';
 export default function EditBook({ params }) {
   const [editItem, setEditItem] = useState({});
   // grab the firebasekey
-  const { firebaseKey } = params;
+  const { storyId } = params;
 
   // make a call to the API to get the book data
   useEffect(() => {
-    getSingleStory(firebaseKey).then(setEditItem);
-  }, [firebaseKey]);
+    getSingleStory(storyId).then(setEditItem);
+  }, [storyId]);
 
   // pass object to form
   return <StoryForm obj={editItem} />;
