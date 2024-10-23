@@ -33,7 +33,6 @@ function StoryForm({ obj = initialState }) {
   useEffect(() => {
     getCategories().then(setCategories);
     getTags().then(setTags);
-    console.warn('CONSOLE WARN OBJ.ID', obj.id);
 
     if (obj.id) {
       setFormInput(obj);

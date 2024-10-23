@@ -5,12 +5,12 @@ import StoryForm from '@/components/forms/StoryForm';
 import PropTypes from 'prop-types';
 import { getSingleStory } from '@/api/storyData';
 
-export default function EditBook({ params }) {
+export default function EditStory({ params }) {
   const [editItem, setEditItem] = useState({});
-  // grab the firebasekey
+  // grab the story id
   const { storyId } = params;
 
-  // make a call to the API to get the book data
+  // make a call to the API to get the story data
   useEffect(() => {
     getSingleStory(storyId).then(setEditItem);
   }, [storyId]);
@@ -19,6 +19,6 @@ export default function EditBook({ params }) {
   return <StoryForm obj={editItem} />;
 }
 
-EditBook.propTypes = {
+EditStory.propTypes = {
   params: PropTypes.objectOf({}).isRequired,
 };

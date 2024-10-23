@@ -5,21 +5,18 @@ import { useAuth } from '../utils/context/authContext';
 import { getStories } from '../api/storyData';
 import StoryCard from '../components/StoryCard';
 
-/* eslint-disable react-hooks/exhaustive-deps */
-
 function Home() {
   const [stories, setStories] = useState([]);
 
   const { user } = useAuth();
 
   const getAllTheStories = () => {
-    getStories(user.uid).then(setStories);
-    console.log(getStories);
+    getStories(user.userUid).then(setStories);
+    // console.log(getStories);
   };
 
   useEffect(() => {
     getAllTheStories();
-    console.log(user);
   }, []);
 
   return (
