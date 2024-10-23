@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 
 function StoryCard({ storyObj }) {
   return (
@@ -12,7 +14,17 @@ function StoryCard({ storyObj }) {
         <Card.Title>{storyObj.title}</Card.Title>
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
-        <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        {/* Wrap date and button in a div to stack vertically */}
+        <div>
+          <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        </div>
+        <div className="d-flex justify-content-center">
+          <Link href={`/story/${storyObj.storyId}`} passHref>
+            <Button variant="dark" className="mt-2" title="View Details">
+              View
+            </Button>
+          </Link>
+        </div>
       </Card.Body>
     </Card>
   );
@@ -25,7 +37,7 @@ StoryCard.propTypes = {
     targetAudience: PropTypes.string,
     description: PropTypes.string,
     dateCreated: PropTypes.string,
-    id: PropTypes.string,
+    storyId: PropTypes.string,
   }).isRequired,
 };
 

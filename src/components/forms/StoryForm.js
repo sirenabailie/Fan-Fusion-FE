@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Select from 'react-select';
 import { useAuth } from '../../utils/context/authContext';
 import { getStories, createStory, updateStory } from '../../api/storyData';
