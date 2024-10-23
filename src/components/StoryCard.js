@@ -3,6 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
+import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 
 function StoryCard({ storyObj }) {
   return (
@@ -13,6 +15,9 @@ function StoryCard({ storyObj }) {
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
         <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        <Link href={`/stories/${storyObj.id}/edit`} passHref>
+          <Button variant="info">EDIT</Button>
+        </Link>
       </Card.Body>
     </Card>
   );
@@ -25,6 +30,7 @@ StoryCard.propTypes = {
     targetAudience: PropTypes.string,
     description: PropTypes.string,
     dateCreated: PropTypes.string,
+    id: PropTypes.number,
   }).isRequired,
 };
 
