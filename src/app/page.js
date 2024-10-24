@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '../utils/context/authContext';
 import { getStories } from '../api/storyData';
 import StoryCard from '../components/StoryCard';
 
@@ -10,16 +9,14 @@ import StoryCard from '../components/StoryCard';
 function Home() {
   const [stories, setStories] = useState([]);
 
-  const { user } = useAuth();
-
   const getAllTheStories = () => {
-    getStories(user.userUid).then(setStories);
+    getStories().then(setStories);
     console.log(getStories);
   };
 
   useEffect(() => {
     getAllTheStories();
-    console.log(user);
+    // console.log(user);
   }, []);
 
   return (

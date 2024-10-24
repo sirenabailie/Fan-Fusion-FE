@@ -19,7 +19,7 @@ function StoryCard({ storyObj }) {
           <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
         </div>
         <div className="d-flex justify-content-center">
-          <Link href={`/story/${storyObj.storyId}`} passHref>
+          <Link href={`/stories/${storyObj.id}`} passHref>
             <Button variant="dark" className="mt-2" title="View Details">
               View
             </Button>
@@ -37,7 +37,7 @@ StoryCard.propTypes = {
     targetAudience: PropTypes.string,
     description: PropTypes.string,
     dateCreated: PropTypes.string,
-    storyId: PropTypes.string,
+    id: PropTypes.string,
   }).isRequired,
 };
 
