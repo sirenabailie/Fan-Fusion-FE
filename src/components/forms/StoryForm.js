@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Select from 'react-select';
 import { useAuth } from '../../utils/context/authContext';
-import { getStories, createStory, updateStory } from '../../api/storyData';
+import { createStory, updateStory } from '../../api/storyData';
 import targetAudienceArray from '../../utils/sample-data/targetAudienceArray.json';
 import getCategories from '../../api/categoryData';
 import getTags from '../../api/tagData';
@@ -25,25 +25,19 @@ const initialState = {
 
 function StoryForm({ obj = initialState }) {
   const [formInput, setFormInput] = useState(obj);
-  const [stories, setStories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const router = useRouter();
   const { user } = useAuth();
 
-  // throw away function to call stories and make the linter chill
-  const a = [];
-  a.push(stories);
-
   useEffect(() => {
-    getStories(user.uid).then(setStories);
     getCategories().then(setCategories);
     getTags().then(setTags);
 
     if (obj.id) {
       setFormInput(obj);
-      selectedTags(obj.tags.map((tag) => ({ value: tag.id, label: tag.name })));
+      setSelectedTags(obj.tags.map((tag) => ({ value: tag.id, label: tag.name })));
     }
   }, [obj]);
 

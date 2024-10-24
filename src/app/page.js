@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { getStories } from '../api/storyData';
 import StoryCard from '../components/StoryCard';
 
-/* eslint-disable react-hooks/exhaustive-deps */
-
 function Home() {
   const [stories, setStories] = useState([]);
 

@@ -3,8 +3,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
-import { Button } from 'react-bootstrap';
 import Link from 'next/link';
+import { Button } from 'react-bootstrap';
 
 function StoryCard({ storyObj }) {
   return (
@@ -14,13 +14,13 @@ function StoryCard({ storyObj }) {
         <Card.Title>{storyObj.title}</Card.Title>
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
-        {/* Wrap date and button in a div to stack vertically */}
-        <div>
-          <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
-        </div>
-        <div className="d-flex justify-content-center">
+        <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        <div className="d-flex justify-content-between mt-3">
+          <Link href={`/stories/${storyObj.id}/edit`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
           <Link href={`/stories/${storyObj.id}`} passHref>
-            <Button variant="dark" className="mt-2" title="View Details">
+            <Button variant="dark" title="View Details">
               View
             </Button>
           </Link>
@@ -37,7 +37,8 @@ StoryCard.propTypes = {
     targetAudience: PropTypes.string,
     description: PropTypes.string,
     dateCreated: PropTypes.string,
-    id: PropTypes.string,
+    id: PropTypes.number,
+    storyId: PropTypes.string,
   }).isRequired,
 };
 
