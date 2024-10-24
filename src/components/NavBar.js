@@ -3,8 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
+  const user = useAuth();
+  console.warn(user.user.id);
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -20,7 +23,7 @@ export default function NavBar() {
             <Button className="btn btn-secondary" href="/stories/add-story">
               Create Story
             </Button>
-            <Button className="btn btn-secondary" href="/Profile/{UserId}">
+            <Button className="btn btn-secondary" href="/Profile/" {...user.user.uid}>
               {/* ^^ Take {UserId} out of the quotes once the function for it is made ^^ */}
               Profile
             </Button>
