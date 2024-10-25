@@ -36,7 +36,7 @@ function StoryCard({ storyObj, onUpdate }) {
 }
 
 StoryCard.propTypes = {
-  onUpdate: PropTypes.shape.isRequired,
+  onUpdate: PropTypes.func.isRequired,
   storyObj: PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
