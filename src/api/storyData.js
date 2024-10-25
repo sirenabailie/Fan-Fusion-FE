@@ -16,7 +16,7 @@ const getStories = () =>
       .catch(reject);
   });
 
-// GET SINGLE Story
+// GET SINGLE STORY
 const getSingleStory = (storyId) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/stories/${storyId}`, {

@@ -24,12 +24,19 @@ function StoryCard({ storyObj, onUpdate }) {
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
         <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
-        <Link href={`/stories/${storyObj.id}/edit`} passHref>
-          <Button variant="info">EDIT</Button>
-        </Link>
-        <Button variant="danger" onClick={deleteThisStory} className="m-2">
-          DELETE
-        </Button>
+        <div className="d-flex justify-content-between mt-3">
+          <Link href={`/stories/${storyObj.id}/edit`} passHref>
+            <Button variant="info">EDIT</Button>
+          </Link>
+          <Link href={`/stories/${storyObj.id}`} passHref>
+            <Button variant="dark" title="View Details">
+              View
+            </Button>
+          </Link>
+          <Button variant="danger" onClick={deleteThisStory} className="m-2">
+            DELETE
+          </Button>
+        </div>
       </Card.Body>
     </Card>
   );
@@ -44,6 +51,7 @@ StoryCard.propTypes = {
     description: PropTypes.string,
     dateCreated: PropTypes.string,
     id: PropTypes.number,
+    storyId: PropTypes.string,
   }).isRequired,
 };
 

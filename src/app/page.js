@@ -9,7 +9,6 @@ function Home() {
 
   const getAllTheStories = () => {
     getStories().then(setStories);
-    // console.log(getStories);
   };
 
   useEffect(() => {
