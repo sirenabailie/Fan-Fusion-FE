@@ -6,8 +6,7 @@ import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
-  const user = useAuth();
-  console.warn(user.user.uid);
+  const { user } = useAuth();
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -23,8 +22,7 @@ export default function NavBar() {
             <Button className="btn btn-secondary" href="/stories/add-story">
               Create Story
             </Button>
-            <Button className="btn btn-secondary" href={`/Profile/${user.user.uid}`}>
-              {/* ^^ Take {UserId} out of the quotes once the function for it is made ^^ */}
+            <Button className="btn btn-secondary" href={`/profile/${user.id}`}>
               Profile
             </Button>
             <Button variant="danger" onClick={signOut}>
