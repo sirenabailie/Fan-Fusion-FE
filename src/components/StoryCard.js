@@ -26,15 +26,15 @@ function StoryCard({ storyObj, onUpdate }) {
         <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
         <div className="d-flex justify-content-between mt-3">
           <Link href={`/stories/${storyObj.id}/edit`} passHref>
-            <Button variant="info">EDIT</Button>
+            <Button variant="info">Edit</Button>
           </Link>
           <Link href={`/stories/${storyObj.id}`} passHref>
             <Button variant="dark" title="View Details">
               View
             </Button>
           </Link>
-          <Button variant="danger" onClick={deleteThisStory} className="m-2">
-            DELETE
+          <Button variant="danger" onClick={deleteThisStory}>
+            Delete
           </Button>
         </div>
       </Card.Body>
