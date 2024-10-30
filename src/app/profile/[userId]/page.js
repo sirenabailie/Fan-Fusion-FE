@@ -12,7 +12,6 @@ function UserDashboard({ params }) {
 
   const getUserStories = () => {
     getUser(userId).then((data) => {
-      console.warn(data);
       setUserStories(data);
     });
   };
