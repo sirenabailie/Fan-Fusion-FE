@@ -19,8 +19,6 @@ function StoryCard({ storyObj, onUpdate }) {
   const { user } = useAuth();
   const pathname = usePathname();
   const profilePage = pathname === `/profile/${user.id}`;
-  console.warn(profilePage);
-  console.warn(profilePage);
 
   return (
     <Card className="card" style={{ width: '18rem', margin: '10px' }}>
