@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import getUser from '../../../api/userData';
 import StoryCard from '../../../components/StoryCard';
+import ProfilePic from '../../../components/ProfilePic';
 
 function UserDashboard({ params }) {
   const [userStories, setUserStories] = useState({ stories: [] });
@@ -21,11 +22,16 @@ function UserDashboard({ params }) {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap justify-content-center">
-      {userStories.stories.map((story) => (
-        <StoryCard key={story.id} storyObj={story} onUpdate={getUserStories} />
-      ))}
-    </div>
+    <>
+      <div>
+        <ProfilePic />
+      </div>
+      <div className="d-flex flex-wrap justify-content-center">
+        {userStories.stories.map((story) => (
+          <StoryCard key={story.id} storyObj={story} onUpdate={getUserStories} />
+        ))}
+      </div>
+    </>
   );
 }
 
