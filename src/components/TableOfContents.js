@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 
-// API function to fetch chapters for a book
-const fetchChapters = async (storyId) => {
-  const response = await fetch(`/api/stories/${storyId}/chapters`);
-  if (!response.ok) throw new Error('Failed to fetch chapters');
-  return response.json();
-};
-
-function TableOfContents({ storyId }) {
-  const [chapters, setChapters] = useState([]);
+function TableOfContents({ storyId, chapters }) {
   const router = useRouter();
 
-  useEffect(() => {
-    // Fetch chapters for the specified bookId
-    fetchChapters(storyId)
-      .then(setChapters)
-      .catch((error) => console.error(error.message));
-  }, [storyId]);
+  const handleChapterClick = (chapterId) => {
+    router.push(`/stories/${storyId}/chapters/${chapterId}`);
+  };
 
   return (
     <div>
-      <h2>Table of Contents</h2>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold' }}>Table of Contents</h2>
       <table>
         <thead>
           <tr>
@@ -31,12 +20,18 @@ function TableOfContents({ storyId }) {
           </tr>
         </thead>
         <tbody>
-          {chapters.map((chapter) => (
-            <tr key={chapter.id} onClick={() => router.push(`/stories/${storyId}/chapters/${chapter.id}`)} style={{ cursor: 'pointer' }}>
-              <td>{chapter.title}</td>
-              <td>{new Date(chapter.dateCreated).toLocaleDateString()}</td>
+          {chapters.length > 0 ? (
+            chapters.map((chapter) => (
+              <tr key={chapter.id} onClick={() => handleChapterClick(chapter.id)} style={{ cursor: 'pointer' }}>
+                <td style={{ paddingRight: '20px' }}>{chapter.title}</td> {/* Adjust padding as needed */}
+                <td>{new Date(chapter.dateCreated).toLocaleDateString()}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="2">No chapters available</td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
@@ -45,6 +40,13 @@ function TableOfContents({ storyId }) {
 
 TableOfContents.propTypes = {
   storyId: PropTypes.string.isRequired,
+  chapters: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      dateCreated: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default TableOfContents;
