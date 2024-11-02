@@ -16,4 +16,18 @@ const getCategories = () =>
       .catch(reject);
   });
 
+// Get Stories by Category
+// const getStoriesByCategory = () =>
+//   new Promise((resolve, reject) => {
+//     fetch(`${endpoint}/stories/categories/${categoryId}`, {
+//       method: 'GET',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((data) => resolve(Object.values(data)))
+//       .catch(reject);
+//   });
+
 export default getCategories;

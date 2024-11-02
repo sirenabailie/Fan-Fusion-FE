@@ -16,6 +16,9 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
+            <Link passHref href="/categories">
+              <Navbar.Brand>Browse 🔎</Navbar.Brand>
+            </Link>
             <Button className="btn btn-secondary" href="/">
               Home
             </Button>
