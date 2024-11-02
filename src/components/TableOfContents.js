@@ -10,21 +10,17 @@ function TableOfContents({ storyId, chapters }) {
   };
 
   return (
-    <div>
-      <h2 style={{ fontSize: '24px', fontWeight: 'bold' }}>Table of Contents</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Chapter</th>
-            <th>Date Created/Updated</th>
-          </tr>
-        </thead>
+    <div style={{ textAlign: 'center' }}>
+      <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Table of Contents</h2>
+      <table style={{ margin: '0 auto', width: '400px' }}>
+        {' '}
+        {/* Center table and set fixed width */}
         <tbody>
           {chapters.length > 0 ? (
             chapters.map((chapter) => (
               <tr key={chapter.id} onClick={() => handleChapterClick(chapter.id)} style={{ cursor: 'pointer' }}>
-                <td style={{ paddingRight: '20px' }}>{chapter.title}</td> {/* Adjust padding as needed */}
-                <td>{new Date(chapter.dateCreated).toLocaleDateString()}</td>
+                <td style={{ width: '60%', paddingRight: '10px', textAlign: 'left' }}>{chapter.title}</td> {/* Title column */}
+                <td style={{ width: '40%', textAlign: 'right' }}>{new Date(chapter.dateCreated).toLocaleDateString()}</td> {/* Date column */}
               </tr>
             ))
           ) : (
