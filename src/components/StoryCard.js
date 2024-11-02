@@ -28,7 +28,7 @@ function StoryCard({ storyObj, onUpdate }) {
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
         <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
-        <div className="d-flex justify-content-between mt-3">
+        <div className="d-flex justify-content-center mt-3">
           <Link href={`/stories/${storyObj.id}`} passHref>
             <Button variant="dark" title="View Details">
               View

@@ -25,9 +25,9 @@ body {
 }
 
 .dropdown-button:hover {
-  background-color: lightgrey; /* Light grey on hover */
+  background-color: lightgrey; 
 }
 
 .dropdown-button:active {
-  background-color: darkgrey; /* Dark grey when clicked */
+  background-color: darkgrey; 
 }
