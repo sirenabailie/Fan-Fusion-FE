@@ -16,4 +16,6 @@ const getCategories = () =>
       .catch(reject);
   });
 
+// Get Stories by Category
+
 export default getCategories;
