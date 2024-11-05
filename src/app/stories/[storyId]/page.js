@@ -4,13 +4,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { getSingleStory } from '@/api/storyData';
 import TableOfContents from '@/components/TableOfContents';
-// import { getTagStories } from '../../../api/tagData';
 
 export default function ViewStory({ params }) {
   const [storyDetails, setStoryDetails] = useState({});
 
   useEffect(() => {
-    // console.warn('!!!!!!!!', getTagStories(3));
     if (params.storyId) {
       getSingleStory(params.storyId).then((data) => setStoryDetails(data));
     }
@@ -48,7 +46,9 @@ export default function ViewStory({ params }) {
               <ul className="list-inline">
                 {storyDetails.tags.map((tag) => (
                   <li key={tag.id} className="list-inline-item">
-                    <span className="badge bg-primary">{tag.name}</span>
+                    <a href={`/tagStories/${tag.id}`} className="badge bg-primary">
+                      {tag.name}
+                    </a>
                   </li>
                 ))}
               </ul>
