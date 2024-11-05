@@ -10,7 +10,7 @@ import Select from 'react-select';
 import { useAuth } from '../../utils/context/authContext';
 import { createStory, updateStory } from '../../api/storyData';
 import targetAudienceArray from '../../utils/sample-data/targetAudienceArray.json';
-import getCategories from '../../api/categoryData';
+import { getCategories } from '../../api/categoryData';
 import getTags from '../../api/tagData';
 import { addStoryTag, removeStoryTag } from '../../api/storyTagData';
 
