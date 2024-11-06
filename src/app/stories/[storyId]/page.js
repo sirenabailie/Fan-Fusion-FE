@@ -46,7 +46,9 @@ export default function ViewStory({ params }) {
               <ul className="list-inline">
                 {storyDetails.tags.map((tag) => (
                   <li key={tag.id} className="list-inline-item">
-                    <span className="badge bg-primary">{tag.name}</span>
+                    <a href={`/tagStories/${tag.id}`} className="badge bg-primary">
+                      {tag.name}
+                    </a>
                   </li>
                 ))}
               </ul>

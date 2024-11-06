@@ -11,7 +11,7 @@ import { useAuth } from '../../utils/context/authContext';
 import { createStory, updateStory } from '../../api/storyData';
 import targetAudienceArray from '../../utils/sample-data/targetAudienceArray.json';
 import { getCategories } from '../../api/categoryData';
-import getTags from '../../api/tagData';
+import { getTags } from '../../api/tagData';
 import { addStoryTag, removeStoryTag } from '../../api/storyTagData';
 
 const initialState = {

@@ -30,8 +30,4 @@ const getStoriesByCategory = (categoryId) =>
       .catch(reject);
   });
 
-const trash = () => {
-  console.warn('delete me');
-};
-
-export { getCategories, getStoriesByCategory, trash };
+export { getCategories, getStoriesByCategory };
