@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 
-function TableOfContents({ storyId, chapters }) {
+function TableOfContents({ storyId, chapters, onUpdate }) {
   const router = useRouter();
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -18,8 +18,10 @@ function TableOfContents({ storyId, chapters }) {
     router.push(`/stories/${storyId}/chapters/${chapterId}/edit`);
   };
 
-  const handleDelete = (chapterId) => {
-    console.log(`Delete chapter with ID: ${chapterId}`);
+  const deleteChapter = () => {
+    if (window.confirm(`Delete ${chapters.title}?`)) {
+      deleteChapter(chapters.id).then(() => onUpdate());
+    }
   };
 
   return (
@@ -48,23 +50,38 @@ function TableOfContents({ storyId, chapters }) {
                     {chapter.title}
                   </button>
                 </td>
-                <td style={{ width: '30%', textAlign: 'right', position: 'relative' }}>
-                  {new Date(chapter.dateCreated).toLocaleDateString()}
-                  <button
-                    type="button"
-                    onClick={() => toggleDropdown(chapter.id)}
+                <td style={{ width: '40%', position: 'relative' }}>
+                  <div
                     style={{
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      marginLeft: '10px',
-                      color: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-end',
+                      gap: '10px',
+                      width: '100%',
                     }}
-                    aria-expanded={activeDropdown === chapter.id}
-                    aria-label="Open chapter options"
                   >
-                    &#x2026; {/* Ellipsis character */}
-                  </button>
+                    <span style={{ lineHeight: '1.5' }}>{new Date(chapter.dateCreated).toLocaleDateString()}</span>
+                    <button
+                      type="button"
+                      onClick={() => toggleDropdown(chapter.id)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        color: 'white',
+                        fontSize: '16px',
+                        padding: '0',
+                        lineHeight: '1.5', // Match line height to center align
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                      aria-expanded={activeDropdown === chapter.id}
+                      aria-label="Open chapter options"
+                    >
+                      &#x2026; {/* Ellipsis character */}
+                    </button>
+                  </div>
 
                   {activeDropdown === chapter.id && (
                     <div
@@ -83,7 +100,7 @@ function TableOfContents({ storyId, chapters }) {
                       <button type="button" onClick={() => handleEdit(chapter.id)} className="dropdown-button">
                         Edit
                       </button>
-                      <button type="button" onClick={() => handleDelete(chapter.id)} className="dropdown-button">
+                      <button type="button" onClick={() => deleteChapter(chapter.id)} className="dropdown-button">
                         Delete
                       </button>
                     </div>
@@ -103,6 +120,7 @@ function TableOfContents({ storyId, chapters }) {
 }
 
 TableOfContents.propTypes = {
+  onUpdate: PropTypes.func.isRequired,
   storyId: PropTypes.string.isRequired,
   chapters: PropTypes.arrayOf(
     PropTypes.shape({
