@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getStoriesByCategory } from '../../../api/categoryData';
-import StoryCard from '../../../components/StoryCard';
+import { getStoriesByCategory } from '@/api/categoryData';
+import StoryCard from '@/components/StoryCard';
 
 export default function CategoryStories({ params }) {
   const [catStories, setCatStories] = useState([]);

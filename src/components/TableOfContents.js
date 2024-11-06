@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
+import { deleteChapter } from '../api/chapterData';
+import { useAuth } from '../utils/context/authContext';
 
-function TableOfContents({ storyId, chapters, onUpdate }) {
+function TableOfContents({ storyId, storyCreatorId, chapters, onUpdate }) {
   const router = useRouter();
+  const { user } = useAuth(); // Get the logged-in user’s ID
   const [activeDropdown, setActiveDropdown] = useState(null);
 
   const handleChapterClick = (chapterId) => {
     router.push(`/stories/${storyId}/chapters/${chapterId}`);
+  };
+
+  const handleAddChapter = () => {
+    router.push(`/stories/${storyId}/chapters/new`);
   };
 
   const toggleDropdown = (chapterId) => {
@@ -18,18 +25,22 @@ function TableOfContents({ storyId, chapters, onUpdate }) {
     router.push(`/stories/${storyId}/chapters/${chapterId}/edit`);
   };
 
-  const deleteChapter = () => {
-    if (window.confirm(`Delete ${chapters.title}?`)) {
-      deleteChapter(chapters.id).then(() => onUpdate());
+  const deleteSingleChapter = (chapterId, chapterTitle) => {
+    if (window.confirm(`Delete ${chapterTitle}?`)) {
+      deleteChapter(chapterId)
+        .then(() => onUpdate())
+        .catch((error) => console.error('Error deleting chapter:', error));
     }
   };
+
+  const isCreator = user?.id === storyCreatorId; // Check if the logged-in user is the creator
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h2 style={{ fontSize: '24px', fontWeight: 'bold', marginBottom: '20px' }}>Table of Contents</h2>
       <table style={{ margin: '0 auto', width: '400px' }}>
         <tbody>
-          {chapters.length > 0 ? (
+          {chapters?.length > 0 ? (
             chapters.map((chapter) => (
               <tr key={chapter.id}>
                 <td style={{ width: '60%', paddingRight: '10px', textAlign: 'left' }}>
@@ -61,29 +72,31 @@ function TableOfContents({ storyId, chapters, onUpdate }) {
                     }}
                   >
                     <span style={{ lineHeight: '1.5' }}>{new Date(chapter.dateCreated).toLocaleDateString()}</span>
-                    <button
-                      type="button"
-                      onClick={() => toggleDropdown(chapter.id)}
-                      style={{
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        color: 'white',
-                        fontSize: '16px',
-                        padding: '0',
-                        lineHeight: '1.5', // Match line height to center align
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                      aria-expanded={activeDropdown === chapter.id}
-                      aria-label="Open chapter options"
-                    >
-                      &#x2026; {/* Ellipsis character */}
-                    </button>
+                    {isCreator && (
+                      <button
+                        type="button"
+                        onClick={() => toggleDropdown(chapter.id)}
+                        style={{
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          color: 'white',
+                          fontSize: '16px',
+                          padding: '0',
+                          lineHeight: '1.5',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                        aria-expanded={activeDropdown === chapter.id}
+                        aria-label="Open chapter options"
+                      >
+                        &#x2026; {/* Ellipsis character */}
+                      </button>
+                    )}
                   </div>
 
-                  {activeDropdown === chapter.id && (
+                  {isCreator && activeDropdown === chapter.id && (
                     <div
                       style={{
                         position: 'absolute',
@@ -100,7 +113,7 @@ function TableOfContents({ storyId, chapters, onUpdate }) {
                       <button type="button" onClick={() => handleEdit(chapter.id)} className="dropdown-button">
                         Edit
                       </button>
-                      <button type="button" onClick={() => deleteChapter(chapter.id)} className="dropdown-button">
+                      <button type="button" onClick={() => deleteSingleChapter(chapter.id, chapter.title)} className="dropdown-button">
                         Delete
                       </button>
                     </div>
@@ -115,6 +128,24 @@ function TableOfContents({ storyId, chapters, onUpdate }) {
           )}
         </tbody>
       </table>
+      {isCreator && (
+        <button
+          type="button"
+          onClick={handleAddChapter}
+          style={{
+            marginTop: '20px',
+            padding: '10px 20px',
+            fontSize: '16px',
+            cursor: 'pointer',
+            backgroundColor: '#007bff',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+          }}
+        >
+          Add Chapter
+        </button>
+      )}
     </div>
   );
 }
@@ -122,6 +153,7 @@ function TableOfContents({ storyId, chapters, onUpdate }) {
 TableOfContents.propTypes = {
   onUpdate: PropTypes.func.isRequired,
   storyId: PropTypes.string.isRequired,
+  storyCreatorId: PropTypes.number.isRequired, // New prop to store the creator's ID
   chapters: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
