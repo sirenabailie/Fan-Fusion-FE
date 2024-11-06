@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import getCategories from '../../api/categoryData';
+import { getCategories } from '../../api/categoryData';
 import CategoryCard from '../../components/Category';
 
 function CategoriesPage() {
