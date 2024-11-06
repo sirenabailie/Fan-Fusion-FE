@@ -17,9 +17,9 @@ const getCategories = () =>
   });
 
 // Get Stories by Category
-const getStoriesByCategory = (categoryId) =>
+const getStoriesByCategory = (categoryId, userId) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/stories/categories/${categoryId}`, {
+    fetch(`${endpoint}/stories/users/${userId}/categories/${categoryId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
