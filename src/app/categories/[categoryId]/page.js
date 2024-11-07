@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getStoriesByCategory } from '../../../api/categoryData';
-import StoryCard from '../../../components/StoryCard';
+import { getStoriesByCategory } from '@/api/categoryData';
+import StoryCard from '@/components/StoryCard';
 import { useAuth } from '../../../utils/context/authContext';
 
 export default function CategoryStories({ params }) {
