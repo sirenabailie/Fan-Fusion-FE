@@ -4,6 +4,10 @@ body {
   text-align: center;
 }
 
+a {
+  text-decoration: none; /* removes underline from anchor tags */
+}
+
 .centered {
   display: flex;
   justify-content: center;
@@ -40,4 +44,20 @@ body {
 
 #navbar {
   background-color: #81cdc6;
+}
+
+.me-auto {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+#custom-switch {
+  justify-self: end;
+}
+
+.navBtn {
+  background-color: #B2FBA5;
+  border: none;
+  color: hotpink;
+  font-family: cursive;
 }
