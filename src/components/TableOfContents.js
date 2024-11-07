@@ -14,7 +14,7 @@ function TableOfContents({ storyId, storyCreatorId, chapters, onUpdate }) {
   };
 
   const handleAddChapter = () => {
-    router.push(`/stories/${storyId}/chapters/new`);
+    router.push(`/stories/${storyId}/add-chapter`);
   };
 
   const toggleDropdown = (chapterId) => {

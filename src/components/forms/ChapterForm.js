@@ -45,7 +45,7 @@ function ChapterForm({ chapterObj = initialState }) {
     // } catch (error) {
     //   console.error("Error updating or creating chapter:", error);
     // }
-    publishOrSaveDraftChapter(payload).then(() => router.push(`/profile/${user.id}`));
+    publishOrSaveDraftChapter(payload).then(() => router.push(`/stories/${storyId}`));
   };
 
   return (
