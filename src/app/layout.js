@@ -26,7 +26,7 @@ export const generateMetadata = async ({ params }) => {
   const { slug } = params; // Example of accessing dynamic route params
 
   return {
-    title: `Fan Fusion - ${slug || 'HOME'}`, // Dynamically set the title using route parameters
+    title: `Fan Fusion `, // Dynamically set the title using route parameters
     description: `This is a dynamically generated description for ${slug}.`, // Dynamic description
     // Add other metadata fields as needed, like keywords, open graph tags, etc.
     keywords: [`${slug}`, 'dynamic', 'page'],
