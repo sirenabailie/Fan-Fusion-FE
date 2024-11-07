@@ -3,12 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { getStories } from '../api/storyData';
 import StoryCard from '../components/StoryCard';
+import { useAuth } from '../utils/context/authContext';
 
 function Home() {
   const [stories, setStories] = useState([]);
+  const { user } = useAuth();
 
   const getAllTheStories = () => {
-    getStories().then(setStories);
+    getStories(user.id).then(setStories);
   };
 
   useEffect(() => {
