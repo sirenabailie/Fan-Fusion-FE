@@ -10,8 +10,8 @@ import Select from 'react-select';
 import { useAuth } from '../../utils/context/authContext';
 import { createStory, updateStory } from '../../api/storyData';
 import targetAudienceArray from '../../utils/sample-data/targetAudienceArray.json';
-import getCategories from '../../api/categoryData';
-import getTags from '../../api/tagData';
+import { getCategories } from '../../api/categoryData';
+import { getTags } from '../../api/tagData';
 import { addStoryTag, removeStoryTag } from '../../api/storyTagData';
 
 const initialState = {
@@ -48,28 +48,28 @@ function StoryForm({ obj = initialState }) {
     }));
   };
 
-  // We use async and await in this code to ensure that the operations for adding and removing tags are completed before moving on to the next step, preventing potential issues with data not being updated correctly in the database.
+  // We use async and await to ensure that adding/removing tags completes before moving to the next step, preventing issues with data synchronization.
   const manageStoryTags = async (storyId) => {
     // Filter and map the tags to be added
     const addedTags =
       (await selectedTags
-        // Filter selectedTags to find tags that are NOT(!) already associated with the current story's tags
-        // The .filter() method is applied to selectedTags. You’re iterating through each tag in selectedTags. For each selectedTag, you check if there’s any tag in obj.tags with a matching id using .some().
-        // We want to return every item in the selectedTags that isn't in the obj?.tags so we can identify which tags should be added.
+        // Filter selectedTags to find tags that are NOT already associated with the current story's tags
+        // The .filter() method iterates over selectedTags. For each selectedTag, it checks if any tag in obj.tags has a matching id using .some().
+        // Returns every item in selectedTags not in obj?.tags to identify which tags to add.
         .filter((selectedTag) => !obj?.tags?.some((storyTag) => storyTag.id === selectedTag.value))
-        // Map the filtered tags to add them to the story by calling addStoryTag
+        // Maps the filtered tags to add them to the story via addStoryTag
         .map((selectedTag) => addStoryTag(storyId, selectedTag.value))) || [];
-    // Ensure it's an empty array if no tags need to be added
+
     // Filter and map the tags to be removed
     const removedTags =
       (await obj?.tags
-        // Filter the story's current tags to find tags that are not included in the newly selected tags
-        // We want to return every item in the obj.tags that isn't in the selectedTags so we can identify which tags should be removed.
+        // Filters the story's current tags to find tags not included in the newly selected tags
+        // Returns every item in obj.tags not in selectedTags to identify which tags to remove.
         ?.filter((storyTag) => !selectedTags.some((selectedTag) => selectedTag.value === storyTag.id))
-        // Map the filtered tags to remove them from the story by calling removeStoryTag
+        // Maps the filtered tags to remove them from the story via removeStoryTag
         .map((storyTag) => removeStoryTag(storyId, storyTag.id))) || [];
-    // Ensure it's an empty array if no tags need to be removed
-    // Flatten addedTags and removedTags into single array and ensure all promises resolve before exiting function
+
+    // Flatten addedTags and removedTags into a single array and ensure all promises resolve before exiting
     await Promise.all([...addedTags, ...removedTags]);
   };
 
@@ -77,16 +77,24 @@ function StoryForm({ obj = initialState }) {
     setSelectedTags(selections);
   };
 
+  // Submits the story form, creating or updating a story
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (obj?.id) {
+      // Update existing story
       updateStory(obj.id, { ...formInput, userId: user.id }).then(() => {
-        manageStoryTags(obj.id).then(() => router.push('/'));
+        manageStoryTags(obj.id).then(() => {
+          router.push(`/stories/${obj.id}`);
+        });
       });
     } else {
+      // Create new story
       const payload = { ...formInput, userId: user.id };
       createStory(payload).then(({ id }) => {
-        manageStoryTags(id).then(() => router.push('/'));
+        manageStoryTags(id).then(() => {
+          router.push(`/stories/${id}/add-chapter`); // Redirect to CreateChapter after creating a new story
+        });
       });
     }
   };
@@ -95,22 +103,22 @@ function StoryForm({ obj = initialState }) {
     <Form onSubmit={handleSubmit} className="text-black">
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Story</h2>
 
-      {/* IMAGE INPUT  */}
+      {/* IMAGE INPUT */}
       <FloatingLabel controlId="floatingInput2" label="Cover Image" className="mb-3">
         <Form.Control type="url" placeholder="Enter an image url" name="image" value={formInput.image} onChange={handleChange} required />
       </FloatingLabel>
 
-      {/* TITLE INPUT  */}
+      {/* TITLE INPUT */}
       <FloatingLabel controlId="floatingInput1" label="Story Title" className="mb-3">
         <Form.Control type="text" placeholder="Enter a title for your story" name="title" value={formInput.title} onChange={handleChange} required />
       </FloatingLabel>
 
-      {/* DESCRIPTION TEXTAREA  */}
+      {/* DESCRIPTION TEXTAREA */}
       <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
         <Form.Control as="textarea" placeholder="Description" style={{ height: '100px' }} name="description" value={formInput.description} onChange={handleChange} required />
       </FloatingLabel>
 
-      {/* TARGET AUDIENCE  */}
+      {/* TARGET AUDIENCE */}
       <FloatingLabel controlId="floatingSelect" label="Target Audience">
         <Form.Select aria-label="Target Audience" name="targetAudience" onChange={handleChange} className="mb-3" value={formInput.targetAudience} required>
           <option value="">Select an Audience</option>
@@ -122,10 +130,10 @@ function StoryForm({ obj = initialState }) {
         </Form.Select>
       </FloatingLabel>
 
-      {/* TARGET CATEGORY  */}
+      {/* TARGET CATEGORY */}
       <FloatingLabel controlId="floatingSelect" label="Category">
         <Form.Select aria-label="Category" name="categoryId" onChange={handleChange} className="mb-3" value={formInput.categoryId} required>
-          <option value="">Select an Category</option>
+          <option value="">Select a Category</option>
           {categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.title}
@@ -134,9 +142,10 @@ function StoryForm({ obj = initialState }) {
         </Form.Select>
       </FloatingLabel>
 
+      {/* TAG SELECT */}
       <Select instanceId="tagSelect" aria-label="Tags" name="tags" className="mb-3" placeholder="Select or Create a Tag..." value={selectedTags} isMulti onChange={handleTagChange} options={tags.map((tag) => ({ value: tag.id, label: tag.name }))} />
 
-      {/* SUBMIT BUTTON  */}
+      {/* SUBMIT BUTTON */}
       <Button type="submit">{obj.id ? 'Update' : 'Create'} Story</Button>
     </Form>
   );

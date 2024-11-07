@@ -16,8 +16,8 @@ const getSingleChapter = (chapterId) =>
       .catch(reject);
   });
 
-// CREATE Chapter
-const createChapter = (payload) =>
+// CREATE publish or save draft
+const publishOrSaveDraftChapter = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/chapters`, {
       method: 'POST',
@@ -45,4 +45,4 @@ const deleteChapter = (chapterId) =>
       .catch(reject);
   });
 
-export { getSingleChapter, createChapter, deleteChapter };
+export { getSingleChapter, publishOrSaveDraftChapter, deleteChapter };

@@ -8,6 +8,12 @@ import TableOfContents from '@/components/TableOfContents';
 export default function ViewStory({ params }) {
   const [storyDetails, setStoryDetails] = useState({});
 
+  const fetchStoryDetails = () => {
+    if (params.storyId) {
+      getSingleStory(params.storyId).then((data) => setStoryDetails(data));
+    }
+  };
+
   useEffect(() => {
     if (params.storyId) {
       getSingleStory(params.storyId).then((data) => setStoryDetails(data));
@@ -36,7 +42,7 @@ export default function ViewStory({ params }) {
         </div>
 
         {/* Table of Contents */}
-        <div className="mb-4">{storyDetails.chapters && <TableOfContents storyId={params.storyId} chapters={storyDetails.chapters} />}</div>
+        <TableOfContents storyId={params.storyId} storyCreatorId={storyDetails.user?.id} chapters={storyDetails.chapters} onUpdate={fetchStoryDetails} />
 
         {/* Tags */}
         <div>
@@ -46,7 +52,9 @@ export default function ViewStory({ params }) {
               <ul className="list-inline">
                 {storyDetails.tags.map((tag) => (
                   <li key={tag.id} className="list-inline-item">
-                    <span className="badge bg-primary">{tag.name}</span>
+                    <a href={`/tagStories/${tag.id}`} className="badge bg-primary">
+                      {tag.name}
+                    </a>
                   </li>
                 ))}
               </ul>

@@ -16,4 +16,18 @@ const getTags = () =>
       .catch(reject);
   });
 
-export default getTags;
+// READ Tagged stories
+const getTagStories = (tagId, userId) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/tags/${tagId}/users/${userId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data.stories))
+      .catch(reject);
+  });
+
+export { getTags, getTagStories };
