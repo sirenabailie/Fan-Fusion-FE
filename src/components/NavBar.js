@@ -5,6 +5,7 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import Image from 'next/image';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import DarkSwitch from './DarkToggle';
 
 export default function NavBar() {
   const { user } = useAuth();
@@ -32,6 +33,7 @@ export default function NavBar() {
             <Button variant="danger" onClick={signOut}>
               Sign Out
             </Button>
+            <DarkSwitch />
           </Nav>
         </Navbar.Collapse>
       </Container>
