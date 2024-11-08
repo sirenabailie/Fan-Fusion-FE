@@ -1,5 +1,5 @@
 body {
-  background: black;
+  background: #FFBFF3;
   color: white;
   text-align: center;
 }
@@ -30,4 +30,14 @@ body {
 
 .dropdown-button:active {
   background-color: darkgrey; 
+}
+
+#signIn {
+  background-color: #81cdc6;
+  border: none;
+  color: #321E48;
+}
+
+#navbar {
+  background-color: #81cdc6;
 }
