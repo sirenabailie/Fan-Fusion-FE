@@ -2,6 +2,11 @@ body {
   background: #FFBFF3;
   color: white;
   text-align: center;
+  background-image: url(../styles/Images/inkswirl.avif);
+  background-repeat:repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
 }
 
 .centered {
@@ -39,5 +44,26 @@ body {
 }
 
 #navbar {
-  background-color: #81cdc6;
+/* From https://css.glass */
+background: rgba(108, 189, 187, 0.86);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3.1px);
+-webkit-backdrop-filter: blur(3.1px);
+border: 1px solid rgba(108, 189, 187, 0.38);
+}
+
+.card {
+  background: rgba(223, 203, 228, 0.6);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.1px);
+-webkit-backdrop-filter: blur(6.1px);
+border: 1px solid rgba(223, 203, 228, 0.38);
+color: white;
+}
+
+.btn {
+background: transparent;
+outline: none;
 }

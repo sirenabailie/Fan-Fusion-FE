@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
@@ -10,6 +10,8 @@ import { deleteStory } from '../api/storyData';
 import { useAuth } from '../utils/context/authContext';
 
 function StoryCard({ storyObj, onUpdate }) {
+  const [isFavorited, setIsFavorited] = useState(false);
+
   const deleteThisStory = () => {
     if (window.confirm(`Delete ${storyObj.title}?`)) {
       deleteStory(storyObj.id).then(() => onUpdate());
@@ -20,6 +22,10 @@ function StoryCard({ storyObj, onUpdate }) {
   const pathname = usePathname();
   const profilePage = pathname === `/profile/${user.id}`;
 
+  const toggleFavorite = () => {
+    setIsFavorited((prev) => !prev);
+  };
+
   return (
     <Card className="card" style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" src={storyObj.image} alt={storyObj.title} style={{ height: '400px' }} />
@@ -27,12 +33,26 @@ function StoryCard({ storyObj, onUpdate }) {
         <Card.Title>{storyObj.title}</Card.Title>
         <p>{storyObj.description}</p>
         <h6>Target Audience: {storyObj.targetAudience}</h6>
-        <small>Date Created: {new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        <small>{new Date(storyObj.dateCreated).toLocaleDateString()}</small>
+        <div style={{ marginBottom: '30px' }} /> {/* Add space here */}
         <div className="d-flex justify-content-center mt-3">
           <Link href={`/stories/${storyObj.id}`} passHref>
-            <Button variant="dark" title="View Details">
-              View
-            </Button>
+            <button
+              type="button"
+              className="btn"
+              style={{
+                position: 'absolute', // Set absolute positioning
+                bottom: '10px', // Distance from the bottom of the card
+                left: '10px', // Distance from the left of the card
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+              }}
+              aria-label={`View details for ${storyObj.title}`}
+              title="View"
+            >
+              <i className="fas fa-eye ms-2" style={{ color: 'white', fontSize: '24px' }} />
+            </button>
           </Link>
           {profilePage ? (
             <>
@@ -40,10 +60,27 @@ function StoryCard({ storyObj, onUpdate }) {
                 <Button variant="info">Edit</Button>
               </Link>
               <Button variant="danger" onClick={deleteThisStory}>
-                Delete
+                <i className="fas fa-trash-can ms-2" style={{ color: 'white', fontSize: '24px' }} />
               </Button>
             </>
           ) : null}
+          <button
+            type="button"
+            className="btn"
+            onClick={toggleFavorite}
+            style={{
+              position: 'absolute', // Set absolute positioning
+              bottom: '10px', // Distance from the bottom of the card
+              right: '10px', // Distance from the right of the card
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            aria-label={`Mark ${storyObj.title} as favorite`}
+            title="Favorite"
+          >
+            <i className="fas fa-star ms-2 star-icon" style={{ color: isFavorited ? '#6f8ec1' : 'white', fontSize: '24px' }} />
+          </button>
         </div>
       </Card.Body>
     </Card>
