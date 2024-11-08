@@ -5,6 +5,7 @@ import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import Image from 'next/image';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import DarkSwitch from './DarkToggle';
 
 export default function NavBar() {
   const { user } = useAuth();
@@ -20,18 +21,19 @@ export default function NavBar() {
             <Link passHref href="/categories">
               <Navbar.Brand color={321e48}>Browse 🔎</Navbar.Brand>
             </Link>
-            <Button className="btn btn-secondary" href="/">
+            <Button className="btn navBtn" href="/">
               Home
             </Button>
-            <Button className="btn btn-secondary" href="/stories/add-story">
+            <Button className="btn navBtn" href="/stories/add-story">
               Create Story
             </Button>
-            <Button className="btn btn-secondary" href={`/profile/${user.id}`}>
+            <Button className="btn navBtn" href={`/profile/${user.id}`}>
               Profile
             </Button>
-            <Button variant="danger" onClick={signOut}>
+            <Button className="btn navBtn" variant="danger" onClick={signOut}>
               Sign Out
             </Button>
+            <DarkSwitch />
           </Nav>
         </Navbar.Collapse>
       </Container>
