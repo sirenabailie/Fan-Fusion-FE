@@ -1,15 +1,10 @@
-/* body {
-  --color-background: #FFBFF3;
-  --color-foreground: #1f2023;
-  color: white;
-  text-align: center;
-} */
-
 body {
   --color-background: #FFBFF3; /* Light mode background */
   --color-foreground: purple; /* Light mode foreground */
   background-color: var(--color-background);
   color: var(--color-foreground);
+  color: white;
+  text-align: center;
 }
 
 body.dark {
