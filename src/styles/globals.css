@@ -1,7 +1,31 @@
-body {
-  background: #FFBFF3;
+/* body {
+  --color-background: #FFBFF3;
+  --color-foreground: #1f2023;
   color: white;
   text-align: center;
+} */
+
+body {
+  --color-background: #FFBFF3; /* Light mode background */
+  --color-foreground: purple; /* Light mode foreground */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+body.dark {
+  --color-background: purple; /* Dark mode background */
+  --color-foreground: #FFBFF3; /* Dark mode foreground */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.App {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.switcher {
+  display: flex;
 }
 
 a {
