@@ -1,7 +1,30 @@
 body {
-  background: #FFBFF3;
+  --color-background: #FFBFF3; /* Light mode background */
+  --color-foreground: purple; /* Light mode foreground */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   color: white;
   text-align: center;
+}
+
+body.dark {
+  --color-background: purple; /* Dark mode background */
+  --color-foreground: #FFBFF3; /* Dark mode foreground */
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.App {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.switcher {
+  display: flex;
+}
+
+a {
+  text-decoration: none; /* removes underline from anchor tags */
 }
 
 .centered {
@@ -40,4 +63,20 @@ body {
 
 #navbar {
   background-color: #81cdc6;
+}
+
+.me-auto {
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+#custom-switch {
+  justify-self: end;
+}
+
+.navBtn {
+  background-color: #B2FBA5;
+  border: none;
+  color: hotpink;
+  font-family: cursive;
 }
