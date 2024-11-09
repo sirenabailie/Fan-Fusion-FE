@@ -20,7 +20,7 @@ function Home() {
   return (
     <div className="d-flex flex-wrap justify-content-center">
       {stories.map((story) => (
-        <StoryCard key={story.id} storyObj={story} onUpdate={getAllTheStories} />
+        <StoryCard key={story.id} storyObj={story} onUpdate={getAllTheStories} editDelete={false} />
       ))}
     </div>
   );

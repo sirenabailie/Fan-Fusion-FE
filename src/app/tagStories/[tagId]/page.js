@@ -25,7 +25,7 @@ export default function TaggedStories({ params }) {
   return (
     <div className="d-flex flex-wrap justify-content-center">
       {tagStories.map((story) => (
-        <StoryCard key={story.id} storyObj={story} onUpdate={getTaggedStories} />
+        <StoryCard key={story.id} storyObj={story} onUpdate={getTaggedStories} editDelete={false} />
       ))}
     </div>
   );

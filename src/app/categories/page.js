@@ -16,7 +16,7 @@ function CategoriesPage() {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap justify-content-center">
+    <div className="d-flex flex-wrap justify-content-center gap-2 mt-5 mx-auto">
       {categories.map((category) => (
         <CategoryCard key={category.id} categoryObj={category} />
       ))}

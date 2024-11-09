@@ -21,7 +21,7 @@ export default function CategoryStories({ params }) {
     getCatStories();
   }, []);
 
-  return <div className="d-flex flex-wrap justify-content-center">{catStories.length > 0 ? catStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={getCatStories} />) : <p>No Stories to display</p>}</div>;
+  return <div className="d-flex flex-wrap justify-content-center">{catStories.length > 0 ? catStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={getCatStories} editDelete={false} />) : <p>No Stories to display</p>}</div>;
 }
 
 CategoryStories.propTypes = {
