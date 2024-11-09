@@ -42,8 +42,10 @@ function UserDashboard() {
       {/* Published Stories Section */}
       <div className="published-stories">
         <h2 className="text-center mb-3">Published Stories</h2>
-        <div className="d-flex flex-wrap justify-content-center">{userStories.length > 0 ? userStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} />) : <p className="text-center">You have not published any stories yet.</p>}</div>
-        <div className="d-flex flex-wrap justify-content-center">
+        <div className="d-flex flex-wrap justify-content-center">{userStories.length > 0 ? userStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} editDelete />) : <p className="text-center">You have not published any stories yet.</p>}</div>
+
+        <div className="d-flex flex-wrap justify-content-center mt-5">
+          <h2 className="text-center mb-3">Your Drafted Chapters</h2>
           {draftedChapters.length > 0 ? (
             <table className="details" style={{ margin: '0 auto', width: '400px' }}>
               <tbody>
@@ -78,7 +80,7 @@ function UserDashboard() {
               </tbody>
             </table>
           ) : (
-            <p className="text-center">You have not published any stories yet.</p>
+            <p className="text-center">You have no drafted chapters.</p>
           )}
         </div>
       </div>
@@ -86,7 +88,7 @@ function UserDashboard() {
       {/* Favorite Stories Section */}
       <div className="favorite-stories mt-5">
         <h2 className="text-center mb-3">Favorite Stories</h2>
-        <div className="d-flex flex-wrap justify-content-center">{favoriteStories.length > 0 ? favoriteStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} />) : <p className="text-center">No stories have been added to your favorites yet.</p>}</div>
+        <div className="d-flex flex-wrap justify-content-center">{favoriteStories.length > 0 ? favoriteStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} editDelete={false} />) : <p className="text-center">No stories have been added to your favorites yet.</p>}</div>
       </div>
     </div>
   );

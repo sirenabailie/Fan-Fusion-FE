@@ -4,14 +4,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+// import { usePathname } from 'next/navigation';
 import { deleteStory, favoritesStoryToggle } from '../api/storyData';
 import { useAuth } from '../utils/context/authContext';
 
-function StoryCard({ storyObj, onUpdate }) {
+function StoryCard({ storyObj, onUpdate, editDelete }) {
   const { user } = useAuth();
-  const pathname = usePathname();
-  const profilePage = pathname === `/profile/${user.id}`;
+  // const pathname = usePathname();
+  // const profilePage = pathname === `/profile/${user.id}`;
 
   // Toggle favorite status locally and call onUpdate to refresh dashboard with getUser
   const toggleFavorite = () => {
@@ -53,7 +53,7 @@ function StoryCard({ storyObj, onUpdate }) {
               <i className="fas fa-eye ms-2" style={{ color: 'white', fontSize: '24px' }} />
             </button>
           </Link>
-          {profilePage ? (
+          {editDelete ? (
             <>
               <Link href={`/stories/${storyObj.id}/edit`} passHref>
                 <button
@@ -117,6 +117,7 @@ function StoryCard({ storyObj, onUpdate }) {
 
 StoryCard.propTypes = {
   onUpdate: PropTypes.func.isRequired,
+  editDelete: PropTypes.bool.isRequired,
   storyObj: PropTypes.shape({
     image: PropTypes.string,
     title: PropTypes.string,
