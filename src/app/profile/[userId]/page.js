@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -43,9 +41,12 @@ function UserDashboard() {
       <div className="published-stories">
         <h2 className="text-center mb-3">Published Stories</h2>
         <div className="d-flex flex-wrap justify-content-center">{userStories.length > 0 ? userStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} editDelete />) : <p className="text-center">You have not published any stories yet.</p>}</div>
+      </div>
 
-        <div className="d-flex flex-wrap justify-content-center mt-5">
-          <h2 className="text-center mb-3">Your Drafted Chapters</h2>
+      {/* Drafted Chapters Section */}
+      <div className="mt-5">
+        <h2 className="text-center mb-3">Your Drafted Chapters</h2>
+        <div className="d-flex flex-wrap justify-content-center">
           {draftedChapters.length > 0 ? (
             <table className="details" style={{ margin: '0 auto', width: '400px' }}>
               <tbody>
