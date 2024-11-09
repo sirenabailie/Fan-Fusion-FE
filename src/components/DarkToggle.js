@@ -27,10 +27,14 @@ function DarkSwitch() {
   };
 
   return (
-    <Form className="switcher">
-      <div className="sun">🔆</div>
+    <Form className="switcher switcher">
+      <div className="sun">
+        <i className="fas fa-sun" style={{ color: 'white', fontSize: '16px' }} />
+      </div>
       <Form.Check type="switch" id="custom-switch" checked={isDarkMode} onChange={handleToggle} />
-      <div>🌙</div>
+      <div>
+        <i className="fas fa-moon" style={{ color: '#2f559c', fontSize: '16px' }} />
+      </div>
     </Form>
   );
 }

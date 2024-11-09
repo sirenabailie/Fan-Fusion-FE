@@ -18,22 +18,25 @@ export default function NavBar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Link passHref href="/categories">
-              <Navbar.Brand color={321e48}>Browse 🔎</Navbar.Brand>
-            </Link>
-            <Button className="btn navBtn" href="/">
+            <Button className="navBtn" href="/">
               Home
             </Button>
-            <Button className="btn navBtn" href="/stories/add-story">
+            <Button className="navBtn" href="/stories/add-story">
               Create Story
             </Button>
-            <Button className="btn navBtn" href={`/profile/${user.id}`}>
+            <Button className="navBtn" href={`/profile/${user.id}`}>
               Profile
             </Button>
-            <Button className="btn navBtn" variant="danger" onClick={signOut}>
+            <Link passHref href="/categories">
+              <Navbar.Brand color={321e48}>
+                {' '}
+                <i className="fas fa-magnifying-glass" />
+              </Navbar.Brand>
+            </Link>
+            <DarkSwitch className="fa-darkswitch" />
+            <Button className="navBtn signout" variant="danger" onClick={signOut}>
               Sign Out
             </Button>
-            <DarkSwitch />
           </Nav>
         </Navbar.Collapse>
       </Container>

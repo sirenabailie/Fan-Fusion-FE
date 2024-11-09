@@ -55,7 +55,7 @@ function ChapterForm({ chapterObj = initialState }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="text-black">
+    <Form onSubmit={handleSubmit} className="text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
       <h2 className="text-white mt-5">Chapter</h2>
 
       <FloatingLabel controlId="chapterTitleInput" label="Chapter Title" className="mb-3">
@@ -66,10 +66,10 @@ function ChapterForm({ chapterObj = initialState }) {
         <Form.Control as="textarea" placeholder="Content" style={{ height: '200px' }} name="content" value={formInput.content} onChange={handleChange} required />
       </FloatingLabel>
 
-      <Button type="submit" onClick={() => setDraftStatus(false)}>
+      <Button className="btn" type="submit" onClick={() => setDraftStatus(false)} style={{ marginRight: '20px' }}>
         Publish
       </Button>
-      <Button type="submit" onClick={() => setDraftStatus(true)}>
+      <Button className="btn" type="submit" onClick={() => setDraftStatus(true)}>
         Save as Draft
       </Button>
     </Form>
