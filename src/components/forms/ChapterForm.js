@@ -45,18 +45,16 @@ function ChapterForm({ chapterObj = initialState }) {
 
     publishOrSaveDraftChapter(payload).then(() => {
       if (draftStatus) {
-        // Redirect to the user dashboard if saving as draft
-        router.push(`/profile/${storyId}`);
+        router.push(`/profile/${user.id}`);
       } else {
-        // Redirect to the story's main page if publishing
-        router.push(`/profile/${storyId}`);
+        router.push(`/stories/${storyId}`);
       }
     });
   };
 
   return (
     <Form onSubmit={handleSubmit} className="text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <h2 className="text-white mt-5">Chapter</h2>
+      <h2 className="text-white mt-5 details">Chapter</h2>
 
       <FloatingLabel controlId="chapterTitleInput" label="Chapter Title" className="mb-3">
         <Form.Control type="text" placeholder="Enter chapter title" name="title" value={formInput.title} onChange={handleChange} required />
