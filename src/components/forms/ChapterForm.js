@@ -38,14 +38,20 @@ function ChapterForm({ chapterObj = initialState }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { ...formInput, storyId, userId: user.id, saveAsDraft: draftStatus };
-    // try {
+
     if (chapterObj?.id) {
       payload.id = chapterObj.id;
     }
-    // } catch (error) {
-    //   console.error("Error updating or creating chapter:", error);
-    // }
-    publishOrSaveDraftChapter(payload).then(() => router.push(`/stories/${storyId}`));
+
+    publishOrSaveDraftChapter(payload).then(() => {
+      if (draftStatus) {
+        // Redirect to the user dashboard if saving as draft
+        router.push(`/profile/${storyId}`);
+      } else {
+        // Redirect to the story's main page if publishing
+        router.push(`/profile/${storyId}`);
+      }
+    });
   };
 
   return (

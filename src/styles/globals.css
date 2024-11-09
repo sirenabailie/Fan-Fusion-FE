@@ -5,13 +5,19 @@ body {
   color: var(--color-foreground);
   color: white;
   text-align: center;
+  background-image: url(../styles/Images/inkswirl.avif);
+  background-repeat:repeat;
+  background-position:center center;
+  background-attachment:fixed;
+  background-size:cover;
 }
 
 body.dark {
-  --color-background: purple; /* Dark mode background */
+  --color-background: darkgrey; /* Dark mode background */
   --color-foreground: #FFBFF3; /* Dark mode foreground */
   background-color: var(--color-background);
   color: var(--color-foreground);
+  background-image: url(../styles/Images/DarkModeSwirl.png);
 }
 
 .App {
@@ -62,9 +68,34 @@ a {
 }
 
 #navbar {
-  background-color: #81cdc6;
+  background: rgba(223, 203, 228, 0.6);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.1px);
+-webkit-backdrop-filter: blur(6.1px);
+border: 1px solid rgba(223, 203, 228, 0.38);
+color: white;
 }
 
+.card {
+  background: rgba(223, 203, 228, 0.6);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.1px);
+-webkit-backdrop-filter: blur(6.1px);
+border: 1px solid rgba(223, 203, 228, 0.38);
+color: white;
+}
+
+.btn {
+background: transparent;
+outline: none;
+}
+
+.btn:hover {
+  background-color: #5c7dba;
+}
+ 
 .me-auto {
   width: 100%;
   justify-content: space-evenly;
@@ -75,8 +106,7 @@ a {
 }
 
 .navBtn {
-  background-color: #B2FBA5;
   border: none;
-  color: hotpink;
+  color: white;
   font-family: cursive;
 }
