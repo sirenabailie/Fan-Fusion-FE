@@ -33,7 +33,7 @@ export default function ViewStory({ params }) {
         <img src={storyDetails.image} alt={storyDetails.title} style={{ width: '300px' }} />
       </div>
 
-      <div className="text-white ms-5 d-flex flex-column" style={{ maxWidth: '500px' }}>
+      <div className="text-white ms-5 d-flex flex-column details story-details" style={{ maxWidth: '500px' }}>
         <div className="mb-2">
           <h5 style={{ fontSize: '24px', fontWeight: 'bold' }}>
             {storyDetails.title} by {storyDetails.user?.username || 'Unknown author'}
@@ -60,7 +60,7 @@ export default function ViewStory({ params }) {
               <ul className="list-inline">
                 {storyDetails.tags.map((tag) => (
                   <li key={tag.id} className="list-inline-item">
-                    <a href={`/tagStories/${tag.id}`} className="badge bg-primary">
+                    <a href={`/tagStories/${tag.id}`} className="badge btn">
                       {tag.name}
                     </a>
                   </li>

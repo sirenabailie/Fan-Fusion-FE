@@ -50,26 +50,10 @@ function StoryForm({ obj = initialState }) {
 
   // We use async and await to ensure that adding/removing tags completes before moving to the next step, preventing issues with data synchronization.
   const manageStoryTags = async (storyId) => {
-    // Filter and map the tags to be added
-    const addedTags =
-      (await selectedTags
-        // Filter selectedTags to find tags that are NOT already associated with the current story's tags
-        // The .filter() method iterates over selectedTags. For each selectedTag, it checks if any tag in obj.tags has a matching id using .some().
-        // Returns every item in selectedTags not in obj?.tags to identify which tags to add.
-        .filter((selectedTag) => !obj?.tags?.some((storyTag) => storyTag.id === selectedTag.value))
-        // Maps the filtered tags to add them to the story via addStoryTag
-        .map((selectedTag) => addStoryTag(storyId, selectedTag.value))) || [];
+    const addedTags = (await selectedTags.filter((selectedTag) => !obj?.tags?.some((storyTag) => storyTag.id === selectedTag.value)).map((selectedTag) => addStoryTag(storyId, selectedTag.value))) || [];
 
-    // Filter and map the tags to be removed
-    const removedTags =
-      (await obj?.tags
-        // Filters the story's current tags to find tags not included in the newly selected tags
-        // Returns every item in obj.tags not in selectedTags to identify which tags to remove.
-        ?.filter((storyTag) => !selectedTags.some((selectedTag) => selectedTag.value === storyTag.id))
-        // Maps the filtered tags to remove them from the story via removeStoryTag
-        .map((storyTag) => removeStoryTag(storyId, storyTag.id))) || [];
+    const removedTags = (await obj?.tags?.filter((storyTag) => !selectedTags.some((selectedTag) => selectedTag.value === storyTag.id)).map((storyTag) => removeStoryTag(storyId, storyTag.id))) || [];
 
-    // Flatten addedTags and removedTags into a single array and ensure all promises resolve before exiting
     await Promise.all([...addedTags, ...removedTags]);
   };
 
@@ -77,30 +61,27 @@ function StoryForm({ obj = initialState }) {
     setSelectedTags(selections);
   };
 
-  // Submits the story form, creating or updating a story
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (obj?.id) {
-      // Update existing story
       updateStory(obj.id, { ...formInput, userId: user.id }).then(() => {
         manageStoryTags(obj.id).then(() => {
           router.push(`/stories/${obj.id}`);
         });
       });
     } else {
-      // Create new story
       const payload = { ...formInput, userId: user.id };
       createStory(payload).then(({ id }) => {
         manageStoryTags(id).then(() => {
-          router.push(`/stories/${id}/add-chapter`); // Redirect to CreateChapter after creating a new story
+          router.push(`/stories/${id}/add-chapter`);
         });
       });
     }
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="text-black">
+    <Form onSubmit={handleSubmit} className="text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
       <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Story</h2>
 
       {/* IMAGE INPUT */}
@@ -146,7 +127,9 @@ function StoryForm({ obj = initialState }) {
       <Select instanceId="tagSelect" aria-label="Tags" name="tags" className="mb-3" placeholder="Select or Create a Tag..." value={selectedTags} isMulti onChange={handleTagChange} options={tags.map((tag) => ({ value: tag.id, label: tag.name }))} />
 
       {/* SUBMIT BUTTON */}
-      <Button type="submit">{obj.id ? 'Update' : 'Create'} Story</Button>
+      <Button className="btn" type="submit">
+        {obj.id ? 'Update' : 'Create'} Story
+      </Button>
     </Form>
   );
 }

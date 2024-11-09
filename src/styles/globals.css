@@ -1,15 +1,14 @@
 body {
   --color-background: #FFBFF3; /* Light mode background */
-  --color-foreground: purple; /* Light mode foreground */
+  --color-foreground: white; /* Light mode foreground */
   background-color: var(--color-background);
   color: var(--color-foreground);
-  color: white;
   text-align: center;
   background-image: url(../styles/Images/inkswirl.avif);
-  background-repeat:repeat;
-  background-position:center center;
-  background-attachment:fixed;
-  background-size:cover;
+  background-repeat: repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 body.dark {
@@ -54,48 +53,66 @@ a {
 }
 
 .dropdown-button:hover {
-  background-color: lightgrey; 
+  background-color: lightgrey;
 }
 
 .dropdown-button:active {
-  background-color: darkgrey; 
+  background-color: darkgrey;
 }
 
 #signIn {
-  background-color: #81cdc6;
-  border: none;
-  color: #321E48;
+  background: rgba(223, 203, 228, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(223, 203, 228, 0.38);
+  color: white;
+}
+
+#signIn:hover {
+  background-color: #5c7dba;
+}
+
+#signIn:active {
+  background-color: #ac82b6;
 }
 
 #navbar {
   background: rgba(223, 203, 228, 0.6);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.1px);
--webkit-backdrop-filter: blur(6.1px);
-border: 1px solid rgba(223, 203, 228, 0.38);
-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(223, 203, 228, 0.38);
+  color: white;
 }
 
 .card {
   background: rgba(223, 203, 228, 0.6);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(6.1px);
--webkit-backdrop-filter: blur(6.1px);
-border: 1px solid rgba(223, 203, 228, 0.38);
-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(223, 203, 228, 0.38);
+  color: white;
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955);
 }
 
 .btn {
-background: transparent;
-outline: none;
+  background-color: #ac82b6;
+  outline: none;
+  border: none;
 }
 
 .btn:hover {
   background-color: #5c7dba;
 }
- 
+
+.btn:active {
+  background-color: #ac82b6 !important;
+}
+
 .me-auto {
   width: 100%;
   justify-content: space-evenly;
@@ -109,4 +126,51 @@ outline: none;
   border: none;
   color: white;
   font-family: cursive;
+  background-color: transparent;
+  font-size: larger;
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955); 
+}
+
+.details {
+  background: rgba(223, 203, 228, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(223, 203, 228, 0.38);
+  color: white;
+  padding: 10px!important;
+}
+
+.draft {
+  background: rgba(223, 203, 228, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.1px);
+  -webkit-backdrop-filter: blur(6.1px);
+  border: 1px solid rgba(223, 203, 228, 0.38);
+  color: white;
+  width: 1000px;
+}
+
+.fa-magnifying-glass {
+  margin: 10px;
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955); 
+}
+
+.signout {
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955); 
+}
+
+.switcher {
+  margin: 10px;
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955); 
+}
+
+.fas {
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955);
+}
+
+.story-details {
+  text-shadow: 2px 2px 5px rgba(63, 39, 66, 0.955);
 }
