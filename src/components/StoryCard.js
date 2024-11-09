@@ -107,7 +107,7 @@ function StoryCard({ storyObj, onUpdate }) {
             aria-label={`Mark ${storyObj.title} as favorite`}
             title="Favorite"
           >
-            <i className="fas fa-star ms-2 star-icon" style={{ color: storyObj.isFavorited ? '#6f8ec1' : 'white', fontSize: '24px' }} />
+            <i className="fas fa-star ms-2 star-icon" style={{ color: storyObj.isFavorited ? '#247ac1' : 'white', fontSize: '24px' }} />
           </button>
         </div>
       </Card.Body>

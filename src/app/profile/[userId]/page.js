@@ -36,7 +36,7 @@ function UserDashboard() {
   };
 
   return (
-    <div className="container my-4">
+    <div className="container my-4 story-details">
       <h1 className="text-center mb-4">{user.firstName}&apos;s Dashboard</h1>
 
       {/* Published Stories Section */}
@@ -45,13 +45,14 @@ function UserDashboard() {
         <div className="d-flex flex-wrap justify-content-center">{userStories.length > 0 ? userStories.map((story) => <StoryCard key={story.id} storyObj={story} onUpdate={refreshUserData} />) : <p className="text-center">You have not published any stories yet.</p>}</div>
         <div className="d-flex flex-wrap justify-content-center">
           {draftedChapters.length > 0 ? (
-            <table style={{ margin: '0 auto', width: '400px' }}>
+            <table className="details" style={{ margin: '0 auto', width: '400px' }}>
               <tbody>
                 {draftedChapters.map((chapter) => (
                   <tr key={chapter.id}>
                     <td style={{ width: '60%', paddingRight: '10px', textAlign: 'left' }}>
                       <button
                         type="button"
+                        className="story-details"
                         onClick={() => handleChapterClick(chapter.id, chapter.storyId)}
                         style={{
                           background: 'none',
