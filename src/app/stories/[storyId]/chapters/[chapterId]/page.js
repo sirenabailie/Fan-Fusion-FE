@@ -19,8 +19,9 @@ export default function ViewChapter({ params }) {
 
   return (
     <div className="chapter-details" style={{ margin: '20px' }}>
-      <h1>{chapterDetails.title}</h1>
+      <h1 className="chapter-title">{chapterDetails.title}</h1>
       <p
+        className="details"
         style={{
           marginTop: '20px',
           marginLeft: '200px',

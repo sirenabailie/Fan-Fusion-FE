@@ -82,7 +82,7 @@ function StoryForm({ obj = initialState }) {
 
   return (
     <Form onSubmit={handleSubmit} className="text-black" style={{ maxWidth: '800px', margin: '0 auto' }}>
-      <h2 className="text-white mt-5">{obj.id ? 'Update' : 'Create'} Story</h2>
+      <h2 className="text-white mt-5 details">{obj.id ? 'Update' : 'Create'} Story</h2>
 
       {/* IMAGE INPUT */}
       <FloatingLabel controlId="floatingInput2" label="Cover Image" className="mb-3">
