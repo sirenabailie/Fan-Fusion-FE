@@ -1,4 +1,4 @@
-# NextJS with Firebase Auth App Router Template
+# Fan Fiction App
 
 [See Live Demo of this Template](https://drt-next-js-template-app-router.netlify.app/)
 
@@ -7,40 +7,30 @@
 - [Starting the Project](#starting-the-project)
 - [Deploying on Netlify](#deploying-on-netlify)
 ___
-## Getting Started
-### Use Template
-#### 1. To get started, click the GREEN "Use this Template" button at the top of the repo
-<img width="915" alt="Screen Shot 2022-07-06 at 12 54 01 PM" src="https://user-images.githubusercontent.com/29741570/177612998-4aac9237-5a1e-4f13-8ae0-468587521564.png">
+## About this app
+This app is a platform for fan fiction enthusiasts to create, share, and explore stories. Users can sign in, create and edit their own stories, and browse through stories from other writers. With category and tag filters, a personalized profile page, and a dark mode option, this app enhances the reading and writing experience for fan fiction fans.
 
-#### 2. Make sure YOUR github account is selected in the dropdown and name your project
-<img width="763" alt="Screen Shot 2022-07-06 at 12 54 48 PM" src="https://user-images.githubusercontent.com/29741570/177613126-dd38f678-7553-4f27-8a4a-75680f14d71e.png">
+## Features
+1. User Authentication
+Users can sign in to create and manage their stories. Only authenticated users have access to story creation, editing, and deletion.
+2. CRUD Operations on Stories
+Users can create, read, update, and delete their own stories. This ensures that each writer has full control over their content while also maintaining privacy for other users' stories.
+3. CRUD Operations on Chapters
+Stories can be organized into chapters, and each chapter can be created, edited, or deleted by the story's author.
+4. Categories and Tags Pages
+   - Categories: Stories can be browsed by category, allowing users to filter content based on their interests.
+   - Tags: Users can also filter stories by tags, offering a more specific search based on themes or tropes.
+5. Profile Page
+The profile page displays:
+- User-Created Stories: A list of stories the user has authored.
+- Favorited Stories: Stories that the user has marked as favorites.
+- Chapter Drafts: Drafts of chapters the user is currently working on.
+Users can only perform CRUD operations on their own stories and chapters from their profile page.
+6. Dark Mode Toggle
+The app includes a dark mode toggle in the navbar, implemented with react-bootstrap. The dark mode setting is persistent, maintaining the user's preference across reloads and route changes.
 
-#### 3. Clone your new repo to your local machine
-#### 4. Go to the **NEXT** section
-
-## Starting the Project
-1. Create a Firebase project and set up authentication. Use [these videos](https://vimeo.com/showcase/codetracker-firebase) as a refresher if needed.
-1. From your command line, be in the root directory and run `npm install` OR `npm i` for short.
-1. Next, run `npm run prepare`. This command sets up husky to track eslint errors on commit that will make your deploy fail on Netlify.
-1. To start your application, run `npm run dev`. THIS IS THE COMMAND YOU WILL USE TO RUN YOUR DEVELOPMENT SERVER FROM NOW ON.
-1. Open [http://localhost:3000](http://localhost:3000) with your browser.
-
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
-
-- Build Command: `npm run build`
-- Publish directory: `.next`
-
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there if you did not add them when you were deploying your site
-
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Usage
+1. Sign In: Register or log in to create, edit, and manage your stories.
+2. Browse Stories: Explore stories on the home page, by category, or by tag filters.
+3. Profile Management: View and manage your stories, drafts, and favorited stories from your profile page.
+4. Dark Mode Toggle: Use the toggle in the navbar to switch between light and dark themes, and enjoy the persistent theme across pages.
