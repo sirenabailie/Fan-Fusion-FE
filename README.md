@@ -1,12 +1,4 @@
 # Fan Fiction App
-
-[See Live Demo of this Template](https://drt-next-js-template-app-router.netlify.app/)
-
-## Topics
-- [Get Started](#get-started)
-- [Starting the Project](#starting-the-project)
-- [Deploying on Netlify](#deploying-on-netlify)
-___
 ## About this app
 This app is a platform for fan fiction enthusiasts to create, share, and explore stories. Users can sign in, create and edit their own stories, and browse through stories from other writers. With category and tag filters, a personalized profile page, and a dark mode option, this app enhances the reading and writing experience for fan fiction fans.
 
@@ -34,3 +26,9 @@ The app includes a dark mode toggle in the navbar, implemented with react-bootst
 2. Browse Stories: Explore stories on the home page, by category, or by tag filters.
 3. Profile Management: View and manage your stories, drafts, and favorited stories from your profile page.
 4. Dark Mode Toggle: Use the toggle in the navbar to switch between light and dark themes, and enjoy the persistent theme across pages.
+
+## Contributors
+- [Yarelis Martin, BE](https://github.com/yarelismartin)
+- [Fletcher J Moore, BE](https://github.com/FletcherJMoore)
+- [SirenaBailie, FE](https://github.com/sirenabailie)
+- [Casey Cunningham, FE](https://github.com/dinnerdoggy)
